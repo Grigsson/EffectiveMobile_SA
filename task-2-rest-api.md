@@ -2,10 +2,12 @@
 
 ## REST API
 
-GET /api/v1/partner-stores?cityId=1
+```http
+GET /api/v1/partner-stores?cityId=1 HTTP/1.1
 Host: api.petrushka-green.ru
 Accept: application/json
 Authorization: Bearer <access_token>
+```
 
 ## Описание полей
 
@@ -74,3 +76,14 @@ Authorization: Bearer <access_token>
 
 
 ## Примеры возможных ответов
+
+## Возможные ответы API
+
+| Статус | Тип контента | Описание | Пример ответа |
+|-------|-------------|----------|---------------|
+| 200 OK | application/json | Успешное получение списка магазинов | `{<br>"screenTitle": "Выберите магазин",<br>"data": [<br>{<br>"id": "metro",<br>"type": "external_partner",<br>"name": "METRO",<br>"logoUrl": "https://cdn.petrushka-green.ru/partners/metro.png",<br>"delivery": {<br>"type": "scheduled",<br>"label": "Ближайшая доставка",<br>"displayText": "сегодня 21:00–23:00"<br>},<br>"externalUrl": "https://online.metro-cc.ru"<br>}<br>]<br>}` |
+| 400 Bad Request | application/json | Некорректные параметры запроса | `{<br>"error": {<br>"code": "INVALID_REQUEST",<br>"message": "Некорректные параметры запроса"<br>}<br>}` |
+| 401 Unauthorized | application/json | Пользователь не авторизован | `{<br>"error": {<br>"code": "UNAUTHORIZED",<br>"message": "Требуется авторизация"<br>}<br>}` |
+| 403 Forbidden | application/json | Доступ запрещен | `{<br>"error": {<br>"code": "FORBIDDEN",<br>"message": "Доступ запрещен"<br>}<br>}` |
+| 404 Not Found | application/json | Магазины не найдены | `{<br>"error": {<br>"code": "NOT_FOUND",<br>"message": "Магазины не найдены"<br>}<br>}` |
+| 500 Internal Server Error | application/json | Внутренняя ошибка сервера | `{<br>"error": {<br>"code": "INTERNAL_ERROR",<br>"message": "Внутренняя ошибка сервера"<br>}<br>}` |
