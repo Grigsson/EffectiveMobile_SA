@@ -79,11 +79,103 @@ Authorization: Bearer <access_token>
 
 ## Возможные ответы API
 
-| Статус | Тип контента | Описание | Пример ответа |
-|-------|-------------|----------|---------------|
-| 200 OK | application/json | Успешное получение списка магазинов | `{<br>"screenTitle": "Выберите магазин",<br>"data": [<br>{<br>"id": "metro",<br>"type": "external_partner",<br>"name": "METRO",<br>"logoUrl": "https://cdn.petrushka-green.ru/partners/metro.png",<br>"delivery": {<br>"type": "scheduled",<br>"label": "Ближайшая доставка",<br>"displayText": "сегодня 21:00–23:00"<br>},<br>"externalUrl": "https://online.metro-cc.ru"<br>}<br>]<br>}` |
-| 400 Bad Request | application/json | Некорректные параметры запроса | `{<br>"error": {<br>"code": "INVALID_REQUEST",<br>"message": "Некорректные параметры запроса"<br>}<br>}` |
-| 401 Unauthorized | application/json | Пользователь не авторизован | `{<br>"error": {<br>"code": "UNAUTHORIZED",<br>"message": "Требуется авторизация"<br>}<br>}` |
-| 403 Forbidden | application/json | Доступ запрещен | `{<br>"error": {<br>"code": "FORBIDDEN",<br>"message": "Доступ запрещен"<br>}<br>}` |
-| 404 Not Found | application/json | Магазины не найдены | `{<br>"error": {<br>"code": "NOT_FOUND",<br>"message": "Магазины не найдены"<br>}<br>}` |
-| 500 Internal Server Error | application/json | Внутренняя ошибка сервера | `{<br>"error": {<br>"code": "INTERNAL_ERROR",<br>"message": "Внутренняя ошибка сервера"<br>}<br>}` |
+## Возможные ответы API
+
+| Статус | Тип контента | Описание | Пример |
+|-------|-------------|----------|--------|
+| 200 OK | application/json | Успешный ответ | см. Example 200 |
+| 400 Bad Request | application/json | Некорректный запрос | см. Example 400 |
+| 401 Unauthorized | application/json | Нет авторизации | см. Example 401 |
+| 403 Forbidden | application/json | Доступ запрещен | см. Example 403 |
+| 404 Not Found | application/json | Нет данных | см. Example 404 |
+| 500 Internal Server Error | application/json | Ошибка сервера | см. Example 500 |а | 
+
+### Example 200 OK
+
+```json
+{
+  "status": "success",
+  "data": {
+    "screenTitle": "Выберите магазин",
+    "stores": [
+      {
+        "id": "metro",
+        "type": "external_partner",
+        "name": "METRO",
+        "logoUrl": "https://cdn.petrushka-green.ru/partners/metro.png",
+        "delivery": {
+          "type": "scheduled",
+          "label": "Ближайшая доставка",
+          "displayText": "сегодня 21:00–23:00"
+        },
+        "externalUrl": "https://online.metro-cc.ru"
+      }
+    ]
+  }
+}
+```
+
+### Example 400 Bad Request
+
+```json
+{
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "INVALID_REQUEST",
+    "message": "Некорректные параметры запроса"
+  }
+}
+```
+
+### Example 401 Unauthorized
+
+```json
+{
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Требуется авторизация"
+  }
+}
+```
+
+### Example 403 Forbidden
+
+```json
+{
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "FORBIDDEN",
+    "message": "Доступ запрещен"
+  }
+}
+```
+
+### Example 404 Not Found
+
+```json
+{
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "Магазины не найдены"
+  }
+}
+```
+
+### Example 500 Internal Server Error
+
+```json
+{
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "INTERNAL_ERROR",
+    "message": "Внутренняя ошибка сервера"
+  }
+}
+```
