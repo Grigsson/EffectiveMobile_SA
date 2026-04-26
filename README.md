@@ -12,4 +12,3 @@
 - task-1-requirements-analysis.md — анализ противоречий, исправленная версия ТЗ, вопросы к заказчику
 - task-2-rest-api.md — пример REST API запроса и JSON-ответа
 - task-3-push-architecture.md — описание архитектуры PUSH-уведомлений
-- diagrams/ — схемы
