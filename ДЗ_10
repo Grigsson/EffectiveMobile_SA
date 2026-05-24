@@ -1,0 +1,14 @@
+```mermaid
+flowchart LR
+    U([Сотрудник]) -->|HTTP POST| P[Корпоративный портал\nМонолит]
+    P -->|INSERT| DB[(Portal DB\nPostgreSQL)]
+    DB -->|polling каждые 5 с| P
+    P -->|SMTP sync| EG[Email Gateway]
+    P -->|HTTP webhook| EXT[Внешние системы]
+
+    style P fill:#E1D5E7,stroke:#9673A6,stroke-width:2px
+    style DB fill:#F5F5F5,stroke:#666
+    style EG fill:#F8CECC,stroke:#B85450
+    style EXT fill:#F8CECC,stroke:#B85450
+    style U fill:#DAE8FC,stroke:#6C8EBF
+```
